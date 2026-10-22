@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Sessions & Reviews — SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="dashboard.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="explore.html">Explore Skills</a></li>
+          <li><a href="my-skills.html">My Skills</a></li>
+          <li><a href="exchanges.html">Exchanges</a></li>
+          <li><a href="sessions.html" class="active">Sessions</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <!-- Injected via auth.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <div style="margin-bottom: 24px;">
+        <h1>Peer Study Sessions</h1>
+        <p>Coordinate learning times for accepted skill swaps and rate your experience.</p>
+      </div>
+
+      <!-- Schedule New Session Form Card -->
+      <div class="card" style="margin-bottom: 32px;">
+        <div class="card-header">
+          <h2>📅 Schedule a Study Session</h2>
+          <span class="text-muted" style="font-size: 0.85rem;">Available for Accepted Exchanges</span>
+        </div>
+
+        <div id="no-accepted-warning" class="alert alert-info" style="display: none; margin-bottom: 16px;">
+          You do not have any accepted skill exchanges yet. 
+          <a href="exchanges.html" style="font-weight: 600;">Check your exchanges</a> to accept pending requests first.
+        </div>
+
+        <form id="schedule-form">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px;">
+            
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label for="session-exchange-select">Select Accepted Exchange *</label>
+              <select id="session-exchange-select" class="form-control" required>
+                <option value="">Loading accepted exchanges...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="session-datetime">Date & Time *</label>
+              <input type="datetime-local" id="session-datetime" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="session-duration">Duration (Minutes) *</label>
+              <select id="session-duration" class="form-control" required>
+                <option value="30">30 Minutes</option>
+                <option value="45">45 Minutes</option>
+                <option value="60" selected>60 Minutes (1 Hour)</option>
+                <option value="90">90 Minutes (1.5 Hours)</option>
+                <option value="120">120 Minutes (2 Hours)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="session-mode">Meeting Mode *</label>
+              <select id="session-mode" class="form-control" required>
+                <option value="Online">Online (Google Meet / Zoom / Discord)</option>
+                <option value="In Person">In Person (Campus Library / Lab / Canteen)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="session-details">Meeting Link or Location Details</label>
+            <input type="text" id="session-details" class="form-control" placeholder="e.g. Google Meet: meet.google.com/xyz or Central Library 2nd Floor Study Room">
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" id="schedule-btn" class="btn btn-primary">
+              Schedule Session
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sessions List -->
+      <div>
+        <div style="margin-bottom: 16px;">
+          <h2>Your Study Sessions</h2>
+          <p>Upcoming meetings, completed learning sessions, and review records.</p>
+        </div>
+
+        <div id="sessions-grid">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div id="sessions-empty" class="empty-state" style="display: none;">
+          <h3>No study sessions scheduled yet</h3>
+          <p>Once you accept an exchange with a peer student, you can schedule your first peer-learning session above!</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Review Modal -->
+  <div id="review-modal" class="modal-overlay">
+    <div class="modal-box">
+      
+      <div class="modal-header">
+        <h3>Submit Peer Review</h3>
+        <button id="review-close-btn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <form id="review-form">
+        <div class="modal-body">
+          
+          <p style="font-size: 0.9rem; margin-bottom: 16px;">
+            How was your study session with <strong id="review-partner-name" style="color: var(--primary);">Partner</strong>?
+            Your constructive feedback helps fellow students build their peer-learning reputation.
+          </p>
+
+          <div class="form-group">
+            <label for="review-rating">Overall Rating (1 to 5 Stars) *</label>
+            <select id="review-rating" class="form-control" required>
+              <option value="5" selected>⭐⭐⭐⭐⭐ (5 - Outstanding & Helpful)</option>
+              <option value="4">⭐⭐⭐⭐ (4 - Very Good & Knowledgeable)</option>
+              <option value="3">⭐⭐⭐ (3 - Good Session)</option>
+              <option value="2">⭐⭐ (2 - Average / Needs Improvement)</option>
+              <option value="1">⭐ (1 - Unsatisfactory)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="review-comment">Feedback & Comments</label>
+            <textarea id="review-comment" class="form-control" placeholder="Describe how well the concepts were explained and any tips for other learners..."></textarea>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="review-cancel-btn" class="btn btn-outline">Cancel</button>
+          <button type="submit" id="review-submit-btn" class="btn btn-primary">Submit Review</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sessions.js"></script>
+</body>
+</html>

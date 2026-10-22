@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillSwap — Student Skill Exchange Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="explore.html">Explore Skills</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section style="background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%); border-bottom: 1px solid var(--border-color); padding: 60px 16px; text-align: center;">
+      <div class="container" style="max-width: 800px;">
+        <span class="badge badge-offer" style="font-size: 0.85rem; padding: 6px 14px; margin-bottom: 16px;">
+          🎓 Peer-to-Peer College Learning Platform
+        </span>
+        <h1 style="font-size: 2.6rem; color: #0f172a; margin: 16px 0;">
+          Trade Skills, Not Money. Grow Together.
+        </h1>
+        <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6;">
+          SkillSwap connects ambitious students who want to learn new skills with peers who can teach them. 
+          Exchange knowledge in programming, design, video editing, presentations, and academics without any monetary payment.
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+          <a href="register.html" class="btn btn-primary" style="padding: 12px 28px; font-size: 1rem;">
+            Join SkillSwap Free
+          </a>
+          <a href="explore.html" class="btn btn-outline" style="padding: 12px 24px; font-size: 1rem;">
+            Browse Skills Catalog
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="container" style="padding: 50px 16px;">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2>How SkillSwap Works</h2>
+        <p>Simple 3-step peer exchange designed for college students</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        
+        <div class="card" style="text-align: center; padding: 32px 20px;">
+          <div style="font-size: 2.2rem; margin-bottom: 12px;">💡</div>
+          <span class="badge badge-level" style="margin-bottom: 8px;">Step 1</span>
+          <h3>List Your Skills</h3>
+          <p style="font-size: 0.9rem;">
+            Add the skills you are good at (Offer) and the skills you are eager to pick up (Wanted) along with your proficiency level.
+          </p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 32px 20px;">
+          <div style="font-size: 2.2rem; margin-bottom: 12px;">🔄</div>
+          <span class="badge badge-level" style="margin-bottom: 8px;">Step 2</span>
+          <h3>Discover Reciprocal Matches</h3>
+          <p style="font-size: 0.9rem;">
+            Our smart matching query finds peers where Student A offers what Student B wants, and Student B offers what Student A wants!
+          </p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 32px 20px;">
+          <div style="font-size: 2.2rem; margin-bottom: 12px;">🚀</div>
+          <span class="badge badge-level" style="margin-bottom: 8px;">Step 3</span>
+          <h3>Swap, Learn & Review</h3>
+          <p style="font-size: 0.9rem;">
+            Accept requests, schedule online or campus study sessions, and review each other to build your academic credibility.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Example Reciprocal Exchange Box -->
+    <section class="container" style="padding-bottom: 40px;">
+      <div class="match-card" style="max-width: 840px; margin: 0 auto; padding: 32px;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <span class="badge badge-offer" style="margin-bottom: 8px;">Real College Scenario</span>
+          <h2>A Reciprocal Skill Exchange Example</h2>
+        </div>
+
+        <div class="match-body">
+          <div class="match-exchange-box">
+            <h3 style="color: var(--primary);">Student A (Priya)</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 8px;">Computer Science • 3rd Year</p>
+            <p style="margin-bottom: 4px;"><span class="badge badge-offer">Can Teach:</span> <strong>Python Programming</strong></p>
+            <p><span class="badge badge-learn">Wants to Learn:</span> <strong>Video Editing (Premiere Pro)</strong></p>
+          </div>
+
+          <div class="match-exchange-box">
+            <h3 style="color: var(--secondary);">Student B (Rohan)</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 8px;">Information Technology • 3rd Year</p>
+            <p style="margin-bottom: 4px;"><span class="badge badge-offer">Can Teach:</span> <strong>Video Editing (Premiere Pro)</strong></p>
+            <p><span class="badge badge-learn">Wants to Learn:</span> <strong>Python Programming</strong></p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 16px;">
+          <p style="font-weight: 600; color: #166534;">
+            🎉 Both students gain valuable skills without spending a single rupee!
+          </p>
+          <a href="register.html" class="btn btn-primary" style="margin-top: 8px;">
+            Create Your Account Today
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+    });
+  </script>
+</body>
+</html>

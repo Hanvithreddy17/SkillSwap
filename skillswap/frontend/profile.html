@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile — SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="dashboard.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="explore.html">Explore Skills</a></li>
+          <li><a href="my-skills.html">My Skills</a></li>
+          <li><a href="exchanges.html">Exchanges</a></li>
+          <li><a href="sessions.html">Sessions</a></li>
+          <li><a href="profile.html" class="active">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <!-- Injected via auth.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container" style="max-width: 900px;">
+      
+      <!-- Student Bio Card -->
+      <div class="card" style="margin-bottom: 24px; padding: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <span class="badge badge-offer" style="margin-bottom: 6px;">Student Profile</span>
+            <h1 id="profile-name" style="margin-bottom: 4px;">Loading Name...</h1>
+            <p id="profile-email" style="font-size: 0.95rem; color: var(--secondary); margin-bottom: 6px;">email@college.edu</p>
+            <p id="profile-dept-year" style="font-weight: 600; color: var(--text-main); margin-bottom: 12px;">Department • Year</p>
+          </div>
+
+          <button id="toggle-edit-btn" class="btn btn-outline btn-sm">
+            ✏️ Edit Profile
+          </button>
+        </div>
+
+        <!-- Rating Summary Box -->
+        <div id="profile-rating-summary" style="margin: 12px 0 16px; padding: 10px 14px; background: var(--bg-subtle); border-radius: var(--border-radius); display: inline-flex; align-items: center; gap: 10px;">
+          <!-- Injected via profile.js -->
+        </div>
+
+        <div style="margin-top: 8px;">
+          <h3 style="font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">About Me / Bio</h3>
+          <p id="profile-bio" style="font-size: 0.95rem; line-height: 1.6; margin-top: 4px;">
+            Loading bio...
+          </p>
+        </div>
+
+        <div style="margin-top: 16px; font-size: 0.8rem; color: var(--text-light);">
+          Member on SkillSwap since: <span id="profile-joined">N/A</span>
+        </div>
+      </div>
+
+      <!-- Collapsible Edit Profile Card -->
+      <div id="edit-profile-container" class="card" style="display: none; margin-bottom: 24px;">
+        <div class="card-header">
+          <h2>Edit Your Profile</h2>
+        </div>
+
+        <form id="edit-profile-form">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+            <div class="form-group">
+              <label for="edit-name">Full Name *</label>
+              <input type="text" id="edit-name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="edit-department">Department *</label>
+              <select id="edit-department" class="form-control" required>
+                <option value="Computer Science">Computer Science & Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Comm.">Electronics & Communication</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Applied Sciences">Applied Sciences / Mathematics</option>
+                <option value="Management Studies">Management Studies</option>
+                <option value="Other">Other Department</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="edit-year">Year of Study *</label>
+              <select id="edit-year" class="form-control" required>
+                <option value="1st Year">1st Year (Freshman)</option>
+                <option value="2nd Year">2nd Year (Sophomore)</option>
+                <option value="3rd Year">3rd Year (Junior)</option>
+                <option value="4th Year">4th Year (Senior)</option>
+                <option value="Postgraduate">Postgraduate / Masters</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-bio">Bio & Academic Interests</label>
+            <textarea id="edit-bio" class="form-control" placeholder="Share your academic background, passions and skills..."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 8px;">
+            <button type="button" id="cancel-edit-btn" class="btn btn-outline">Cancel</button>
+            <button type="submit" id="save-profile-btn" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Skills Portfolio Summary -->
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h2>Skills Portfolio</h2>
+          <a href="my-skills.html" class="btn btn-outline btn-sm">Manage Skills</a>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 6px;">Skills Offered to Teach</h3>
+          <div id="profile-offered-skills">
+            <!-- Badges injected -->
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1rem; color: var(--secondary); margin-bottom: 6px;">Skills Wanted to Learn</h3>
+          <div id="profile-wanted-skills">
+            <!-- Badges injected -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Peer Reviews & Feedback Received -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Peer Reviews & Ratings</h2>
+          <span class="text-muted" style="font-size: 0.85rem;">Feedback earned from completed study sessions</span>
+        </div>
+
+        <div id="profile-reviews-list">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div id="profile-reviews-empty" class="empty-state" style="display: none;">
+          <h3>No reviews received yet</h3>
+          <p>Complete study sessions with exchange partners to collect reviews and establish your tutoring credibility!</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard — SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="dashboard.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="explore.html">Explore Skills</a></li>
+          <li><a href="my-skills.html">My Skills</a></li>
+          <li><a href="exchanges.html">Exchanges</a></li>
+          <li><a href="sessions.html">Sessions</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <!-- Injected via auth.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Welcome Header -->
+      <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h1>Welcome, <span id="welcome-name" style="color: var(--primary);">Student</span>! 👋</h1>
+          <p id="student-meta" style="font-size: 1rem; color: var(--text-muted); margin: 0;">
+            Department • Year of Study
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <a href="explore.html" class="btn btn-primary btn-sm">Explore Skills</a>
+          <a href="my-skills.html" class="btn btn-outline btn-sm">+ Add Skill</a>
+        </div>
+      </div>
+
+      <!-- Reciprocal Match Banner (Shows if mutual matches exist) -->
+      <div id="match-alert-banner" class="alert alert-info" style="display: none; margin-bottom: 24px;"></div>
+
+      <!-- 4 Dashboard Statistics Cards -->
+      <div class="stats-grid">
+        
+        <div class="stat-card">
+          <div class="stat-icon purple">📘</div>
+          <div class="stat-info">
+            <div id="count-offered" class="stat-value">0</div>
+            <div class="stat-label">Skills Offered (Teaching)</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue">🎯</div>
+          <div class="stat-info">
+            <div id="count-wanted" class="stat-value">0</div>
+            <div class="stat-label">Skills Wanted (Learning)</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon amber">⏳</div>
+          <div class="stat-info">
+            <div id="count-pending" class="stat-value">0</div>
+            <div class="stat-label">Pending Requests</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green">🤝</div>
+          <div class="stat-info">
+            <div id="count-accepted" class="stat-value">0</div>
+            <div class="stat-label">Accepted Exchanges</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Platform Navigation Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px;">
+        <a href="explore.html" class="card" style="text-decoration: none; color: inherit;">
+          <h3 style="color: var(--primary); margin-bottom: 4px;">🔍 Explore Skills</h3>
+          <p style="font-size: 0.85rem; margin: 0;">Browse peer skills and check mutual reciprocal matches.</p>
+        </a>
+        <a href="my-skills.html" class="card" style="text-decoration: none; color: inherit;">
+          <h3 style="color: var(--secondary); margin-bottom: 4px;">🛠️ My Skills</h3>
+          <p style="font-size: 0.85rem; margin: 0;">Manage what you can teach and what you want to learn.</p>
+        </a>
+        <a href="exchanges.html" class="card" style="text-decoration: none; color: inherit;">
+          <h3 style="color: var(--accent); margin-bottom: 4px;">📬 My Exchanges</h3>
+          <p style="font-size: 0.85rem; margin: 0;">Review incoming requests and manage outgoing offers.</p>
+        </a>
+        <a href="sessions.html" class="card" style="text-decoration: none; color: inherit;">
+          <h3 style="color: var(--success); margin-bottom: 4px;">📅 Study Sessions</h3>
+          <p style="font-size: 0.85rem; margin: 0;">Schedule study meetings and submit peer ratings.</p>
+        </a>
+      </div>
+
+      <!-- Recent Incoming Requests Table -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Recent Incoming Requests</h2>
+            <p style="margin: 0; font-size: 0.85rem;">Requests received from other students to learn your skills</p>
+          </div>
+          <a href="exchanges.html" class="btn btn-outline btn-sm">View All Exchanges</a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>They Offer</th>
+                <th>They Want</th>
+                <th>Status</th>
+                <th>Received</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="recent-requests-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="recent-empty-state" class="empty-state" style="display: none;">
+          <h3>No incoming requests yet</h3>
+          <p>Make sure you have listed skills you can teach so peers can find and connect with you!</p>
+          <a href="my-skills.html" class="btn btn-primary btn-sm">+ Add Offered Skills</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage My Skills — SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="dashboard.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="explore.html">Explore Skills</a></li>
+          <li><a href="my-skills.html" class="active">My Skills</a></li>
+          <li><a href="exchanges.html">Exchanges</a></li>
+          <li><a href="sessions.html">Sessions</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <!-- Injected via auth.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <div style="margin-bottom: 24px;">
+        <h1>Manage Your Skills</h1>
+        <p>List skills you can share with peers and skills you want to learn.</p>
+      </div>
+
+      <!-- Add New Skill Card -->
+      <div class="card" style="margin-bottom: 32px;">
+        <div class="card-header">
+          <h2>+ Add a New Skill</h2>
+          <span class="text-muted" style="font-size: 0.85rem;">Expand your peer learning portfolio</span>
+        </div>
+
+        <form id="add-skill-form">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+            
+            <div class="form-group">
+              <label for="skill-select">Select Skill *</label>
+              <select id="skill-select" class="form-control" required>
+                <option value="">Loading skills catalog...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="skill-type">Type of Listing *</label>
+              <select id="skill-type" class="form-control" required>
+                <option value="OFFER">📘 I can teach this (Offered Skill)</option>
+                <option value="LEARN">🎯 I want to learn this (Wanted Skill)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="proficiency-level">Proficiency Level *</label>
+              <select id="proficiency-level" class="form-control" required>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate" selected>Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Dynamic Custom Skill Section (Appears if "Add custom skill..." selected) -->
+          <div id="custom-skill-fields" style="display: none; background: var(--bg-subtle); padding: 16px; border-radius: var(--border-radius); margin-bottom: 16px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+              <div class="form-group">
+                <label for="custom-name">Custom Skill Name *</label>
+                <input type="text" id="custom-name" class="form-control" placeholder="e.g. Flutter Development, Organic Chemistry">
+              </div>
+
+              <div class="form-group">
+                <label for="custom-category">Category *</label>
+                <select id="custom-category" class="form-control">
+                  <option value="Programming">Programming</option>
+                  <option value="Design">Design</option>
+                  <option value="Video Editing">Video Editing</option>
+                  <option value="Communication">Communication</option>
+                  <option value="Academics">Academics</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" id="add-skill-btn" class="btn btn-primary">
+              Add Skill to Profile
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Skills Display Lists -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px;">
+        
+        <!-- Left: Skills I Can Teach -->
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <h2>📘 Skills I Can Teach</h2>
+            <span class="badge badge-offer">Offered</span>
+          </div>
+          
+          <div id="offered-list">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div id="offered-empty" class="empty-state" style="display: none;">
+            <h3>No offered skills listed</h3>
+            <p>Add skills you are confident in so other students can request learning from you!</p>
+          </div>
+        </div>
+
+        <!-- Right: Skills I Want to Learn -->
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <h2>🎯 Skills I Want to Learn</h2>
+            <span class="badge badge-learn">Wanted</span>
+          </div>
+
+          <div id="wanted-list">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div id="wanted-empty" class="empty-state" style="display: none;">
+            <h3>No wanted skills listed</h3>
+            <p>Add skills you wish to learn to unlock reciprocal matches with fellow students!</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/my-skills.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exchange Requests — SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="dashboard.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="explore.html">Explore Skills</a></li>
+          <li><a href="my-skills.html">My Skills</a></li>
+          <li><a href="exchanges.html" class="active">Exchanges</a></li>
+          <li><a href="sessions.html">Sessions</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <!-- Injected via auth.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <div style="margin-bottom: 24px;">
+        <h1>Skill Exchanges</h1>
+        <p>Manage incoming requests from peers and track your outgoing swap invitations.</p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-nav">
+        <button id="tab-btn-incoming" class="tab-btn active">📥 Incoming Requests</button>
+        <button id="tab-btn-outgoing" class="tab-btn">📤 Outgoing Requests</button>
+      </div>
+
+      <!-- Tab 1: Incoming Requests Pane -->
+      <div id="pane-incoming" class="tab-pane active">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Requester</th>
+                <th>They Want to Learn</th>
+                <th>They Offer in Return</th>
+                <th>Note / Message</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="incoming-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="incoming-empty" class="empty-state" style="display: none;">
+          <h3>No incoming requests</h3>
+          <p>You haven't received any exchange requests yet. As other students discover your skills, their proposals will appear here!</p>
+          <a href="explore.html" class="btn btn-outline btn-sm">Explore Peer Skills</a>
+        </div>
+      </div>
+
+      <!-- Tab 2: Outgoing Requests Pane -->
+      <div id="pane-outgoing" class="tab-pane">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Recipient</th>
+                <th>Requested Skill</th>
+                <th>Offered Skill</th>
+                <th>Your Message</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="outgoing-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="outgoing-empty" class="empty-state" style="display: none;">
+          <h3>No outgoing requests</h3>
+          <p>You haven't sent any skill exchange requests yet. Browse the explore page to find students to learn from!</p>
+          <a href="explore.html" class="btn btn-primary btn-sm">Browse Skills Catalog</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/exchanges.js"></script>
+</body>
+</html>

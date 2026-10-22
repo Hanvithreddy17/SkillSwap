@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login — SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="explore.html">Explore Skills</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        
+        <div class="auth-header">
+          <h2>Student Login</h2>
+          <p>Access your SkillSwap dashboard & exchanges</p>
+        </div>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">College Email</label>
+            <input type="email" id="email" class="form-control" placeholder="e.g. priya@college.edu" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; padding: 11px; font-weight: 600;">
+            Log In
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>Don't have an account? <a href="register.html">Register here</a></p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuth({ redirectIfAuth: true });
+
+      const form = document.getElementById('login-form');
+      const submitBtn = document.getElementById('submit-btn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Logging In...';
+
+        const res = await apiPost('/api/auth/login', { email, password });
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Log In';
+
+        if (res.ok && res.data.success) {
+          showToast('Login successful! Welcome back.', 'success');
+          setTimeout(() => {
+            window.location.href = '/dashboard.html';
+          }, 600);
+        } else {
+          showToast(res.data.message || 'Login failed. Please check your credentials.', 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

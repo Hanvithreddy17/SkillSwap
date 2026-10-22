@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Skills & Reciprocal Matches — SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="dashboard.html" class="brand-logo">
+        <span class="brand-badge">SS</span>
+        <span>SkillSwap</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="explore.html" class="active">Explore Skills</a></li>
+          <li><a href="my-skills.html">My Skills</a></li>
+          <li><a href="exchanges.html">Exchanges</a></li>
+          <li><a href="sessions.html">Sessions</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div id="nav-user-panel" class="nav-user-panel">
+        <!-- Injected via auth.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <div style="margin-bottom: 20px;">
+        <h1>Explore & Discover Skills</h1>
+        <p>Browse skills offered by other students or view instant 2-way reciprocal matches.</p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-nav">
+        <button id="tab-btn-explore" class="tab-btn active">🌐 All Peer Skills</button>
+        <button id="tab-btn-matches" class="tab-btn">🎯 Reciprocal Matches</button>
+      </div>
+
+      <!-- Search & Filters Bar (Shown on explore tab) -->
+      <div id="filter-bar" class="filter-bar">
+        <input type="text" id="search-input" class="form-control search-input" placeholder="🔍 Search skill name, student name, or topic...">
+        
+        <select id="category-filter" class="form-control category-select">
+          <option value="All">All Categories</option>
+          <option value="Programming">Programming</option>
+          <option value="Design">Design</option>
+          <option value="Video Editing">Video Editing</option>
+          <option value="Communication">Communication</option>
+          <option value="Academics">Academics</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <select id="level-filter" class="form-control level-select">
+          <option value="All">All Levels</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+
+      <!-- Tab 1: All Peer Skills Grid -->
+      <div id="pane-explore" class="tab-pane active">
+        <div id="explore-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px;">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div id="explore-empty" class="empty-state" style="display: none;">
+          <h3>No matching skills found</h3>
+          <p>Try searching for a different keyword or resetting your category filter.</p>
+        </div>
+      </div>
+
+      <!-- Tab 2: Reciprocal Matches -->
+      <div id="pane-matches" class="tab-pane">
+        <div class="alert alert-info" style="margin-bottom: 20px;">
+          <strong>How Reciprocal Matching Works:</strong>
+          A reciprocal match occurs when another student offers a skill you want to learn, and that same student wants to learn a skill you can teach!
+        </div>
+
+        <div id="matches-container">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div id="matches-empty" class="empty-state" style="display: none;">
+          <h3>No direct reciprocal matches found yet</h3>
+          <p>
+            Make sure to list the skills you can teach and what you want to learn on your profile. 
+            As more peers join, mutual matches will appear here automatically!
+          </p>
+          <a href="my-skills.html" class="btn btn-primary btn-sm">Update My Skills</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Request Exchange Modal -->
+  <div id="exchange-modal" class="modal-overlay">
+    <div class="modal-box">
+      
+      <div class="modal-header">
+        <h3>Request Skill Exchange</h3>
+        <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <form id="exchange-form">
+        <div class="modal-body">
+          
+          <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--border-radius); margin-bottom: 16px;">
+            <p style="margin: 0; font-size: 0.9rem;">
+              You are requesting to learn: <strong id="modal-skill-name" style="color: var(--primary);">Skill</strong><br>
+              Taught by: <strong id="modal-student-name">Student</strong>
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-offer-select">Which skill will you teach in return? *</label>
+            <select id="modal-offer-select" class="form-control" required>
+              <!-- Populated dynamically -->
+            </select>
+            <div id="modal-no-offers-warning" class="alert alert-error" style="display: none; margin-top: 8px;">
+              You have not added any skills you can offer yet. 
+              <br><a href="my-skills.html" target="_blank" style="font-weight: 600;">Add an offered skill in My Skills</a> first.
+            </div>
+            <span class="form-help">Select one of your active offered skills to trade.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-message">Introduction Message (Optional)</label>
+            <textarea id="modal-message" class="form-control" placeholder="Hi! I saw your skill listing and would love to exchange knowledge on..."></textarea>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="modal-cancel-btn" class="btn btn-outline">Cancel</button>
+          <button type="submit" id="modal-submit-btn" class="btn btn-primary">Send Request</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>SkillSwap</strong>. Empowering peer-to-peer student skill exchange.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/explore.js"></script>
+</body>
+</html>
